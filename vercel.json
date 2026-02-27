@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "installCommand": "npm --prefix frontend install",
-  "buildCommand": "npm --prefix frontend run build"
+  "installCommand": "sh -c 'if [ -f package.json ]; then npm install; elif [ -f frontend/package.json ]; then npm --prefix frontend install; else echo \"No package.json found\" >&2; exit 1; fi'",
+  "buildCommand": "sh -c 'if [ -f package.json ]; then npm run build; elif [ -f frontend/package.json ]; then npm --prefix frontend run build; else echo \"No package.json found\" >&2; exit 1; fi'"
 }
